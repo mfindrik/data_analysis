@@ -33,16 +33,14 @@ SCC <- readRDS("Source_Classification_Code.rds")
 library("dplyr")
 
 year99 <- NEI %>% filter(year==1999)
-summary99 <- summary(year99$Emissions)
-
+emissions99 <- log10(as.numeric(year99$Emissions))
 year02 <- NEI %>% filter(year==2002)
-summary02 <- summary(year02)
-
+emissions02 <- log10(as.numeric(year02$Emissions))
 year05 <- NEI %>% filter(year==2005)
-summary05 <- summary(year05)
-
+emissions05 <- log10(as.numeric(year05$Emissions))
 year08 <- NEI %>% filter(year==2008)
-summary08 <- summary(year08)
+emissions08 <- log10(as.numeric(year08$Emissions))
 
-
-
+png(filename="plot1.png")
+boxplot(emissions99,emissions02,emissions05,emissions08,names=c("1999","2002","2005","2008"))
+dev.off()
